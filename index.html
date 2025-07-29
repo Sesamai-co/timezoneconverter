@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeZone Pro - Global Time Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="nav-panel" id="navPanel">
+            <div class="nav-header">
+                <div class="brand">
+                    <i class="fas fa-clock brand-icon"></i>
+                    <span class="brand-text">TimeZone Pro</span>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+
+            <div class="current-time-display">
+                <div class="current-time-label" id="currentTimeLabel">Your Current Time</div>
+                <div class="current-time-value" id="currentTimeDisplay">--:--:--</div>
+                <div class="current-date-value" id="currentDateDisplay">Loading...</div>
+                <div class="timezone-label" id="currentTimezoneLabel">Auto-detected</div>
+            </div>
+
+            <div class="nav-content">
+                <div class="control-section">
+                    <label class="control-label">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Your Location</span>
+                    </label>
+                    <div class="location-display" id="sourceTimezoneDisplay">Loading...</div>
+                </div>
+
+                <div class="control-section">
+                    <label class="control-label">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Timezone</span>
+                    </label>
+                    <select id="addTimezoneSelect" class="control-input">
+                        <option value="">Choose timezone to add...</option>
+                    </select>
+                </div>
+
+                <div class="control-section">
+                    <button id="resetToDefaults" class="reset-btn">
+                        <i class="fas fa-undo"></i>
+                        <span>Reset to Defaults</span>
+                    </button>
+                </div>
+
+                <div class="control-section">
+                    <button id="saveAsDefault" class="save-default-btn">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Save as Default</span>
+                    </button>
+                </div>
+                
+                <div class="control-section">
+                    <label class="control-label">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="customTimeLabel">Convert Custom Time</span>
+                        <i class="fas fa-info-circle tooltip-icon" title="Set a specific date and time for conversion"></i>
+                    </label>
+                    
+                    <div class="datetime-input-group">
+                        <input type="date" id="customDate" class="control-input date-input" placeholder="Select date">
+                        <input type="time" id="customTimeOnly" class="control-input time-input" placeholder="Select time">
+                        <button id="saveCustomTime" class="save-btn" style="display: none;">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="status-indicator" id="customTimeStatus" style="display: none;">
+                        <i class="fas fa-pause"></i>
+                        <span>Auto-refresh paused</span>
+                    </div>
+                </div>
+                
+                <button id="resetTime" class="action-btn primary">
+                    <i class="fas fa-clock"></i>
+                    <span>Convert Custom Time</span>
+                </button>
+
+                <div class="divider"></div>
+
+                <div class="control-section">
+                    <label class="control-label">
+                        <i class="fas fa-download"></i>
+                        <span>Export Timezones</span>
+                        <i class="fas fa-info-circle tooltip-icon" title="Export current timezone data for sharing"></i>
+                    </label>
+                    <div class="export-buttons">
+                        <button id="exportCSV" class="export-btn">
+                            <i class="fas fa-file-csv"></i>
+                            <span>CSV</span>
+                        </button>
+                        <button id="copyFormatted" class="export-btn">
+                            <i class="fas fa-copy"></i>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="timezone-grid" id="timezoneGrid"></div>
+        </main>
+
+        <div class="toast" id="toast" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMessage">Action completed</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
